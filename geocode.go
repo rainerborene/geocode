@@ -66,6 +66,4 @@ func BatchGeocode(ips []string) []*GeoIP {
 			}
 		}
 	}
-
-	return responses
 }
