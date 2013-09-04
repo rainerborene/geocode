@@ -23,6 +23,10 @@ type GeoIP struct {
 	ZIPCode     string
 }
 
+func (g GeoIP) String() string {
+	return fmt.Sprintf("%s %s %s", g.CountryCode, g.RegionName, g.City)
+}
+
 func Geocode(s string) (*GeoIP, error) {
 	location := &GeoIP{}
 	ip := net.ParseIP(s)
