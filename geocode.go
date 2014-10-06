@@ -5,7 +5,6 @@ import (
 	"errors"
 	"fmt"
 	"io/ioutil"
-	"log"
 	"net"
 	"net/http"
 )
@@ -45,29 +44,4 @@ func Geocode(s string) (*GeoIP, error) {
 		return nil, err
 	}
 	return location, nil
-}
-
-func BatchGeocode(ips []string) []*GeoIP {
-	ch := make(chan *GeoIP, len(ips))
-	responses := []*GeoIP{}
-
-	for _, ip := range ips {
-		go func(ip string) {
-			geo, err := Geocode(ip)
-			if err != nil {
-				log.Fatal(err)
-			}
-			ch <- geo
-		}(ip)
-	}
-
-	for {
-		select {
-		case r := <-ch:
-			responses = append(responses, r)
-			if len(responses) == len(ips) {
-				return responses
-			}
-		}
-	}
 }
