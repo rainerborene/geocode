@@ -1,5 +1,7 @@
 # geocode.go
 
+[![Build Status](https://travis-ci.org/rainerborene/geocode.svg)](https://travis-ci.org/rainerborene/geocode)
+
 Geocode is a simple wrapper for FreeGeoIP API.
 
 ## Batch
